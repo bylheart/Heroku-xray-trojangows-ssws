@@ -4,7 +4,7 @@
 
 ### 以下内容是根据原作者项目说明进行相应修改，方便初学者小白们理解！
 
-### 详细视频教程YouTube：https://youtu.be/dE730hVgmUs
+### 详细视频教程YouTube：更新中
    
 * 原作者的Heroku脚本为多协议共存脚本，该项目使用[xray](https://github.com/XTLS/Xray-core)+caddy，同时部署通过ws传输模式的vmess vless trojan-go shadowsocks socks等协议，默认已配置好伪装网站。  
 
@@ -17,14 +17,14 @@
 ## 1：Xray
 
 ### 代理协议：vless+ws+tls 或 vmess+ws+tls
-* 服务器地址：自选ip（如：icook.tw）
+* 服务器地址：自选ip（如：icook.tw）或者：应用程序名.herokuapp.com
 * 端口：443
 * 默认UUID：8f91b6a0-e8ee-11ea-adc1-0242ac120002   (务必创建时自定义UUID码)
 * 加密：none
 * 传输协议：ws
 * 伪装类型：none
-* 伪装host：****.workers.dev(CF Workers反代地址)
-* SNI地址：****.workers.dev(CF Workers反代地址)
+* 伪装host：****.workers.dev(CF Workers反代地址)或者：应用程序名.herokuapp.com
+* SNI地址：****.workers.dev(CF Workers反代地址)或者：应用程序名.herokuapp.com
 * path路径：/自定义UUID码-vless 或 /自定义UUID码-vmess    (注意：前有斜杠/)
 * vmess额外id（alterid）：0
 * 底层传输安全：tls
@@ -32,13 +32,13 @@
 
 ## 2：Trojan-Go+ws
 
-* 服务器地址：自选ip（如：icook.tw）
+* 服务器地址：自选ip（如：icook.tw）或者：应用程序名.herokuapp.com
 * 端口：443
 * 密码：8f91b6a0-e8ee-11ea-adc1-0242ac120002   (务必创建时自定义UUID码) 
 * 传输协议：ws
 * path路径：/自定义UUID码-trojan  (注意：前有斜杠/)
-* SNI地址：****.workers.dev(CF Workers反代地址)
-* 伪装host：****.workers.dev(CF Workers反代地址)
+* SNI地址：****.workers.dev(CF Workers反代地址)或者：应用程序名.herokuapp.com
+* 伪装host：****.workers.dev(CF Workers反代地址)或者：应用程序名.herokuapp.com
 
 ## 3：Shadowsocks+ws+tls
 
@@ -73,4 +73,40 @@ addEventListener(
     }
 )
 ```
+----------------------------------------------------------------------------------------------
+```
+const Day0 = 'app0.herokuapp.com'
+const Day1 = 'app1.herokuapp.com'
+const Day2 = 'app2.herokuapp.com'
+const Day3 = 'app3.herokuapp.com'
+const Day4 = 'app4.herokuapp.com'
+addEventListener(
+    "fetch",event => {
+    
+        let nd = new Date();
+        let day = nd.getDate() % 5;
+        if (day === 0) {
+            host = Day0
+        } else if (day === 1) {
+            host = Day1
+        } else if (day === 2) {
+            host = Day2
+        } else if (day === 3){
+            host = Day3
+        } else if (day === 4){
+            host = Day4
+        } else {
+            host = Day1
+        }
+        
+        let url=new URL(event.request.url);
+        url.hostname=host;
+        let request=new Request(url,event.request);
+        event. respondWith(
+            fetch(request)
+        )
+    }
+)
+```
+
 ### 原作者项目地址：https://github.com/mixool/xrayku
