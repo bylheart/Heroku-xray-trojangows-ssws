@@ -1,20 +1,27 @@
+## 提示： 本项目Fork后部署地址后面的名字改成自己的，切记。
+
 ### 提示：UUID建议使用UUID生成器，谷歌一下：UUID生成。。。。如果无法连通，八成是UUID不符合规定！！
 
 ### 提醒： 滥用可能导致账户被删除！！！ 
 
 ### 以下内容是根据原作者项目说明进行相应修改，方便初学者小白们理解！
 
+#### TG群：https://t.me/joinchat/nrUoeEJV_9UxNDhl
+
+#### YouTube频道：https://www.youtube.com/channel/UCxukdnZiXnTFvjF5B5dvJ5w
+
+
 ### 详细视频教程YouTube：更新中
    
-* 原作者的Heroku脚本为多协议共存脚本，该项目使用[xray](https://github.com/XTLS/Xray-core)+caddy，同时部署通过ws传输模式的vmess vless trojan-go shadowsocks socks等协议，默认已配置好伪装网站。  
+* 原作者的Heroku脚本为多协议共存脚本，该项目使用v2ray+caddy，同时部署通过ws传输模式的vmess vless trojan-go shadowsocks socks等协议，默认已配置好伪装网站。  
 
 ## 服务端创建操作流程 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/YG-tsj/Heroku-xray-trojangows-ssws)  
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/YG-tsj/hkok)  
 点击上面紫色`Deploy to Heroku`，会跳转到heroku app创建页面，填上应用程序名、选择节点（美国或者欧洲）、自定义UUID码，其他建议保持默认，点击下面deploy，几秒后搞定！    
 
 ## vmess vless trojan-go shadowsocks对应客户端参数的参考如下,末尾带()里的内容仅为提示
 
-## 1：Xray
+## 1：V2ray
 
 ### 代理协议：vless+ws+tls 或 vmess+ws+tls
 * 服务器地址：自选ip（如：icook.tw）或者：应用程序名.herokuapp.com
@@ -109,4 +116,3 @@ addEventListener(
 )
 ```
 
-### 原作者项目地址：https://github.com/mixool/xrayku
